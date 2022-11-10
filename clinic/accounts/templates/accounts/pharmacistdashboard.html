@@ -1,0 +1,67 @@
+{% extends "accounts/base.html" %} {% block content %}
+<div class="grid grid-cols-4">
+  <div class="col-span-1 shadow-lg bg-blue-500 min-h-screen">
+    <nav>
+     <h5 class="m-6 font-bold uppercase">pharamacist Dashboard</h5>
+      <ul class="flex flex-col m-6 gap-4">
+        <li><a class="font-medium uppercase hover:text-white" href="{% url 'accounts:Add_Product' %}"> &#9193; ADD MEDICINE</a></li>
+        <li> <a class="font-medium uppercase hover:text-white" href="{%url 'logout' %}"> &#9193; LOGOUT</a></li>
+    </ul>
+    </nav>
+  </div>
+  <div class="m-6 col-span-3">
+    <div class="overflow-x-auto relative shadow-md sm:rounded-lg pt-4 pl-4">
+    <table class=" text-sm text-left text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="py-3 px-6">
+                    Item name
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    quantity
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    price
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    Manu_date
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    exp_date
+                </th>
+                <th scope="col" class="py-3 px-6">
+                <span class="sr-only">update</span>
+               </th>
+        </thead>
+      {%for p in prod%}
+        <tbody>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                  {{p.item_name}}
+                </th>
+                <td class="py-4 px-6">
+                     {{p.quantity_in_strip}}
+                   </td>
+                <td class="py-4 px-6">
+                     {{p.itemprice_per_strip}}
+                </td>
+               <td class="py-4 px-6">
+                    {{p.manufractureDate}}
+                </td>
+                <td class="py-4 px-6">
+                   {{p.expirayDate}}
+                </td>
+                <td class="py-4 px-6 text-right">
+                    <a href="{% url 'accounts:Update_Product' p.id %}" class="font-medium  text-blue-600 dark:text-blue-500 hover:underline">update</a>
+                    <a href="{% url 'accounts:Delete_Product' p.id %}" class="font-medium  pl-4 text-green-600 dark:text-red-500 hover:underline">delete</a>
+                </td>
+             </tr>
+            </tr>
+        </tbody>
+        {%endfor%}
+    </table>
+   </div>
+  </div>
+</div>
+
+{% endblock %}

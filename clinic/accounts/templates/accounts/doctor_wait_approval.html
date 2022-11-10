@@ -1,0 +1,11 @@
+{% extends "accounts/base.html" %}
+ {% block content %}
+ <div class="bg-red-300 flex flex justify-center ">
+  <h1 class=" font-bold text-lg">Hello {{request.user.first_name}}</h1>
+   <div><p>Check Later</p></div>
+    <p><a class="bg-green-400" href="{%url 'logout' %}" role="button">Logout For Now</a></p>
+<p>Your Account is not approved till now <br><br>Our Team is checking your profile <br><br> Soon your Account will be confirmed !!!</p>
+   <br><br>
+    
+  </div>
+{% endblock %}

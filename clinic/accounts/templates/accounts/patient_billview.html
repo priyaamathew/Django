@@ -1,0 +1,89 @@
+{% extends "accounts/base.html" %} 
+ {% block content %}
+
+{%if is_discharged%}
+<div class="invoice-box">
+  <table class="p-6 bg-green-500" cellpadding="0" cellspacing="0">
+    <tr class="top">
+      <td colspan="2">
+        <table>
+          <tr>
+            <td class="title">
+              <h1>Hospital Management</h1>
+            </td>
+            
+            
+          </tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr class="information">
+      <td colspan="2">
+        <table>
+          <tr>
+            <td>
+              Patient Name : {{patientName}}<br>
+              Patient Mobile : {{mobile}}<br>
+              Patient Addres : {{address}}<br>
+            </td>
+
+            <td>
+              Doctor Name :<br>
+              {{assignedDoctorName}}<br>
+
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+
+   
+
+    <tr class="heading">
+      <td>
+        Item
+      </td>
+
+      <td>
+        Price
+      </td>
+    </tr>
+
+    
+
+    <tr class="item">
+      <td>
+        Doctor Fee
+      </td>
+
+      <td>
+        {{doctorFee}}
+      </td>
+    </tr>
+
+    <tr class="item">
+      <td>
+        Medicine Cost
+      </td>
+
+      <td>
+        {{medicineCost}}
+      </td>
+    </tr>
+
+   
+
+    <tr class="total">
+      <td></td>
+
+      <td>
+        Total Rupees : {{total}}
+      </td>
+    </tr>
+
+  </table>
+</div>
+{% endif%}
+
+{% endblock %}

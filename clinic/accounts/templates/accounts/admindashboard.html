@@ -1,0 +1,164 @@
+{% extends "accounts/base.html" %} {% block content %}
+<div class="grid grid-cols-4">
+  <div class="col-span-1 shadow-lg  bg-green-700 bg-gradient-to-l from-yellow-400 via-green-500 to-yellow-600 min-h-screen">
+    <nav>
+    <h5  class="font-bold uppercase m-6">Admin Dashboard</h5>
+      <ul class="flex flex-col m-6 gap-4">
+        <li><a class="font-medium uppercase hover:text-white" href="{% url 'accounts:admin-view-patient' %}"> &#9193; Patients</a></li>
+        <li><a class="font-medium uppercase hover:text-white" href="{% url 'accounts:admin-view-doctor' %}"> &#9193; Doctor</a></li>
+        <li class="font-medium uppercase"> &#9193; booking</a></li>
+         <li><a href="{% url 'accounts:invoice-patient-view' %}" class="font-medium uppercase"> &#9193; invoice</a></li>
+        
+        <li> <a class="font-medium uppercase hover:text-white" href="{%url 'logout' %}"> &#9193; LOGOUT</a></li>
+
+      </ul>
+    </nav>
+  </div>
+  <div class="m-6 col-span-3">
+    <div class="flex flex-row bg-orange-800 text-lg text-white p-5 font-bold ">
+      <div class="bg-green-800 p-6 rounded-full">{{doctorcount}} Doctor</div>
+      <div class="ml-4 bg-green-800 p-6 rounded-full ">{{patientcount}} Patient</div>
+      <div class="ml-4 bg-green-800 p-6 rounded-full">{{appointmentcount}} Appointment</div>
+    </div>
+    <div class="bg-orange-400 flex h-52 gap-6 text-center place-items-center">
+      <div class="flex w-44 h-24 mx-12 pl-10 pt-4 bg-green-300 "> <br>Pending Doctor<br>{{pendingdoctorcount}}</div>
+      <div class="flex w-44 h-24 mx-12 pl-10 pt-8 bg-green-300"> Pending Patient <br>{{pendingpatientcount}}</div>
+      <div class="flex w-44 h-24 mx-12 pl-10 pt-8 bg-green-300">Pending Booking<br> {{pendingappointmentcount}}</div>
+    </div>
+
+    <div class="mt-9  grid grid-cols-2 gap-5 ">
+      <div class="gap-5">
+        <h3 class="font-bold uppercase bg-blue-400"> pending Doctors</h3>
+      <table
+        class="table-auto border-separate border-spacing-2 border border-blue-500"
+      >
+        <thead>
+          <tr class="bg-orange-700">
+            <th>Name</th>
+            <th>Address</th>
+            <th>Department</th>
+            <th>contact</th>
+            <th>action</th>
+          </tr>
+        </thead>
+        {% for d in doctor %}
+        <tbody>
+          <tr class="bg-green-700">
+            <td class=" ">{{d.get_name}}</td>
+            <td>{{d.address}}</td>
+            <td>{{d.department}}</td>
+            <td>{{d.mobile}}</td>
+            <td>
+              <a
+                href="{% url 'accounts:DoctorUpdateView' d.id %}"
+                class="font-medium text-black-600 hover:underline hover:text-red-600"
+                >Approve</a
+              >
+            </td>
+          </tr>
+       </tbody>
+        {% endfor %}
+      </table>
+      </div>
+      <div>
+        <h3  class="font-bold uppercase bg-blue-400"> pending Patients</h3>
+        <table
+          class="table-auto border-separate border-spacing-2 border border-blue-500"
+        >
+          <thead>
+            <tr class="bg-orange-700">
+              <th>Name</th>
+              <th>Address</th>
+              <th>doctor</th>
+              <th>contact</th>
+              <th>action</th>
+            </tr>
+          </thead>
+          {% for p in patient %}
+          <tbody>
+            <tr class="bg-green-700">
+              <td class=" ">{{p.get_name}}</td>
+              <td>{{p.address}}</td>
+              <td>{{p.assignedDoctorId}}</td>
+              <td>{{p.mobile}}</td>
+              <td>
+                <a
+                  href="{% url 'accounts:PatientUpdateView' p.id %}"
+                  class="font-medium text-black-600 hover:underline hover:text-red-600"
+                  >Approve</a
+                >
+              </td>
+            </tr>
+          </tbody>
+          {% endfor %}
+        </table>
+      </div>
+      <div class="gap-4">
+        <h3  class="font-bold uppercase bg-blue-400"> pending appointment</h3>
+        <table
+          class="table-auto border-separate border-spacing-2 border border-blue-500"
+        >
+          <thead>
+            <tr class="bg-orange-700">
+              <th>Patient Name</th>
+              <th>Doctor Name</th>
+              <th>AppointmentDate</th>
+              <th>Description</th>
+              <th>Token Number</th>
+            </tr>
+          </thead>
+          {% for a in appoinment %}
+          <tbody>
+            <tr class="bg-green-700">
+              <td>{{a.patientName}}</td>
+              <td>{{a.doctorName}}</td>
+              <td>{{a.appointmentDate}}</td>
+              <td>{{a.description}}</td>
+              <td>
+                <a
+                  href="{% url 'accounts:BookUpdateView' a.id %}"
+                  class="font-medium text-black-600 hover:underline hover:text-red-600"
+                  >Edit</a
+                >
+              </td>
+             </tr>
+            </tbody>
+          {% endfor %}
+        </table>
+      </div>
+      <div class="gap-4">
+        <h3  class="font-bold uppercase bg-blue-400"> pending pharamacist</h3>
+        <table
+          class="table-auto border-separate border-spacing-2 border border-blue-500"
+        >
+          <thead>
+            <tr class="bg-orange-700">
+              <th>pharamacist Name</th>
+              <th>address</th>
+              <th>contact no</th>
+              <th>status</th>
+              
+            </tr>
+          </thead>
+          {% for P in pharmacist %}
+          <tbody>
+            <tr class="bg-green-700">
+              <td>{{P.get_name}}</td>
+              <td>{{P.address}}</td>
+              <td>{{P.mobile}}</td>
+              <td>
+                <a
+                  href="{% url 'accounts:PharmacistUpdateView' P.id %}"
+                  class="font-medium text-black-600 hover:underline hover:text-red-600"
+                  >Edit</a
+                >
+               </td>
+             </tr>
+            </tbody>
+          {% endfor %}
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

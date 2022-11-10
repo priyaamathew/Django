@@ -1,0 +1,16 @@
+{% extends "accounts/base.html" %}{% load tailwind_filters %}
+ {% block content %}
+<h3 class="flex justify-center uppercase mt-6  text-lg font-bold bg-blue-400">patient signup</h3>
+<div class="flex justify-center mt-12">
+  <form method="post" class="w-1/2">
+    {% csrf_token %} {{userForm|crispy }} {{patientForm|crispy}}
+
+    <button
+      type="submit"
+     class="w-full bg-blue-400 hover:bg-green-600 p-4 mt-4 rounded-lg mb-4">
+      SUBMIT
+    </button>
+  </form>
+</div>
+
+{% endblock %}

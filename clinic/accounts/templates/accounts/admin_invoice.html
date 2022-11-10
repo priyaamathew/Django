@@ -1,0 +1,89 @@
+{% extends "accounts/base.html" %} {% block content %}
+
+<div class="grid grid-cols-4">
+  <div class=" shadow-lg bg-yellow-300  min-h-screen">
+    <nav>
+     
+      <h5 class="m-6 font-bold uppercase"><a href="{% url 'accounts:admin-dashboard' %}">Admin Dashboard</a></h5>
+      <ul class="flex flex-col m-6 gap-4">
+        <li><a class="font-medium uppercase" href="{% url 'accounts:admin-view-patient' %}">  Patients</a></li>
+        <li><a class="font-medium uppercase" href="{% url 'accounts:admin-view-doctor' %}">	 Doctor</a></li>
+        <li class="font-medium uppercase">Booking</li>
+        <li class="font-medium uppercase">Invoice</li>
+        <li class="font-medium uppercase"> <a href="{%url 'logout' %}">LogOut</a></li>
+
+      </ul>
+    </nav>
+  </div>
+<div class="m-6 col-span-3">
+<div class="bg-green-400 font-bold uppercase">Patients list</div>
+<div class=" relative shadow-md sm:rounded-lg">
+    <table class=" text-sm text-left  text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="py-3 px-6">
+                    Patient Name
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    Address
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    Symptoms
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    Contact Number
+                </th>
+                 <th scope="col" class="py-3 px-6">
+                    DOCTOR
+                </th>
+                 <th scope="col" class="py-3 px-6">
+                    Token Number
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    Bill
+                </th>
+                
+            </tr>
+        </thead>
+        {% for p in patients %}
+        <tbody>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                {{p.get_name}}
+                </th>
+                <td class="py-4 px-6">
+                    {{p.address}}
+                </td>
+                <td class="py-4 px-6">
+                    {{p.symptoms}}
+                </td>
+                <td class="py-4 px-6">
+                    {{p.mobile}}
+                </td>
+                 <td class="py-4 px-6">
+                    {{p.assignedDoctorId}}
+                </td>
+                 <td class="py-4 px-6">
+                    {{p.token_number}}
+                </td>
+               
+                <td class="py-4 px-6">
+                  <a
+                href="{% url 'accounts:invoice-patient' p.id %}"
+                class="font-medium text-green-600 hover:underline hover:text-red-600"
+                >GENERATE</a>
+                </td>
+              
+            </tr>
+            
+        </tbody>
+        {% endfor %}
+    </table>
+</div>
+</div>
+</div>
+
+
+{% endblock %}
+
+

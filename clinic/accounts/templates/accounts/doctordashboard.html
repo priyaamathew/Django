@@ -1,0 +1,139 @@
+{% extends "accounts/base.html" %}
+{% block content %}
+ <div class="grid grid-cols-4">
+  <div class="W-44 shadow-lg  bg-green-700 bg-gradient-to-l from-yellow-400 via-green-500 to-yellow-600 min-h-screen">
+    <nav>
+    <nav>
+      
+      <h5 class="m-6 font-bold uppercase">Doctor Dashboard</h5>
+      <ul class="flex flex-col m-6 gap-4">
+        <li><a class="font-medium uppercase" href="{% url 'accounts:doctor-prescription' %}">Prescription</a></li>
+    
+       
+        <li> <a class="font-medium uppercase" href="{%url 'logout' %}">LOGOUT</a></li>
+
+      </ul>
+    </nav>
+  </div>
+  <div class="m-6 col-span-3">
+    <div class="bg-blue-400 flex h-52 gap-6 text-center place-items-center">
+      <div class="flex w-44 h-24 mx-10 pl-6 pt-4 bg-orange-400  uppercase hover:text-white ">total patient<br>{{patientcount}}</div>
+      <div class="flex w-44 h-24 mx-12 pl-6 pt-4 bg-orange-400 uppercase hover:text-white "> total appointment <br>{{appointmentcount}}</div>
+      <div class="flex w-44 h-24 mx-12 pl-6 pt-4 bg-orange-400 uppercase hover:text-white"> bill generated<br> {{patientbill}}</div>
+    </div>
+    <h3>Patient LIST</h3>
+      <div class="overflow-x-auto mt-6  relative shadow-md sm:rounded-lg">
+       <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="py-3 px-6">
+                    PATIENT NAME
+                </th>
+                <th scope="col" class="py-3 px-6">
+                   SYMPTOMS 
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    ADDRESS
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    CONTACT NUMBER
+                </th>
+                 <th scope="col" class="py-3 px-6">
+                    TOKEN NUMBER
+                 </th>
+                <th scope="col" class="py-3 px-6">
+                    ACTION
+                </th>
+            </tr>
+        </thead>
+         {% for p in patient %}
+        <tbody>
+            <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    {{p.get_name}}
+                </th>
+                <td class="py-4 px-6">
+                    {{p.symptoms}}
+                </td>
+                <td class="py-4 px-6">
+                     {{p.address}}
+                </td>
+                <td class="py-4 px-6">
+                    {{p.mobile}}
+                </td>
+                 <td class="py-4 px-6">
+                    {{p.token_number}}
+                </td>
+                <td class="py-4 px-6">
+                    <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Admitted</a>
+                </td>
+            </tr>
+           
+         </tbody>
+          {% endfor %}
+      </table>
+    </div>
+    <h3>pending appointment</h3>
+    <div class="overflow-x-auto mt-6  relative shadow-md sm:rounded-lg">
+       <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="py-3 px-6">
+                    PATIENT NAME
+                </th>
+                <th scope="col" class="py-3 px-6">
+                   SYMPTOMS 
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    ADDRESS
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    CONTACT NUMBER
+                </th>
+                 <th scope="col" class="py-3 px-6">
+                    TOKEN NUMBER
+                 </th>
+                 
+              
+            </tr>
+        </thead>
+          {% for a,p in appointments %}
+        
+        <tbody id="p">
+            <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    {{a.patientName}}
+                </th>
+                <td class="py-4 px-6">
+                    {{a.description}}
+                </td>
+                <td class="py-4 px-6">
+                      {{p.address}}
+                </td>
+                <td class="py-4 px-6">
+                    {{p.mobile}}
+                </td>
+                 <td class="py-4 px-6">
+                    {{a.token_number}}
+                </td>
+               
+                
+              
+            </tr>
+           </tbody>
+          {% endfor %}
+         
+      </table>
+    </div>
+  </div>
+  </div>
+</div>
+<script>
+document.getElementById("demo").addEventListener("click", myFunction);
+
+function myFunction() {
+  document.getElementById("demo").innerHTML = "PRESCRIBED!";
+}
+</script>
+ 
+{% endblock %}

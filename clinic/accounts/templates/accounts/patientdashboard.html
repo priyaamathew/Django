@@ -1,0 +1,33 @@
+{% extends "accounts/base.html" %} {% block content %}
+<div class="grid grid-cols-4">
+  <div class="col-span-1 shadow-lg  bg-green-700 bg-gradient-to-l from-yellow-400 via-green-500 to-yellow-600 min-h-screen">
+    <nav>
+     
+     
+      <ul class="flex flex-col m-6 gap-4">
+        <li><a class="font-bold uppercase hover:text-white" href="{% url 'accounts:patient-dashboard'%}">patient dashboard</a></li>
+        <li><a class="font-medium uppercase hover:text-white" href="{% url 'accounts:patient-book-appointment'%}">  &#9193; Make Appoinment</a></li>
+        <li><a  class="font-medium uppercase hover:text-white" href="{% url 'accounts:admin-view-doctor' %}">  &#9193; Doctor</a></li>
+        <li><a class="font-medium uppercase hover:text-white" href="{% url 'accounts:patient-view-appointment'%}">  &#9193; My Appoinment</a></li>
+         <li><a class="font-medium uppercase hover:text-white" href="{% url 'accounts:patient-view-prescription' %}">  &#9193; My prescription</a></li>
+        <li> <a class="font-medium uppercase hover:text-white" href="{% url 'accounts:patient-view-bill' %}">  &#9193; bill</a></li>
+        <li> <a class="font-medium uppercase hover:text-white" href="{%url 'logout' %}">  &#9193; LOGOUT</a></li>
+
+      </ul>
+    </nav>
+  </div>
+  <div class="m-6 col-span-3">
+    <div class="bg-green-400 flex h-52 gap-6 text-center place-items-center">
+      <div class="flex w-44 h-24 mx-12 pl-6 pt-6 bg-orange-300">Pending Appointment<br>{{appointmentcount}}</div>
+      <div class="flex w-44 h-24 mx-12 pl-6 pt-8 bg-orange-300">Pending Prescription <br>{{prescriptioncount}}</div>
+      <div class="flex w-44 h-24 mx-12 pl-6 pt-8 bg-orange-300">Pending Invoice<br> {{pendingappointmentcount}}</div>
+    </div>
+    <h3 class="font-bold mt-6">YOUR DOCTOR DETAILS</h3>
+    <div class="text-lg bg-green-400 font-medium uppercase mt-6">
+     {{doctorName}}<br>{{doctorAddress}}<br>{{doctorMobile}}<br></div>
+ 
+  </div>
+ 
+</div>
+
+{% endblock %}

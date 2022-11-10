@@ -1,0 +1,56 @@
+{% extends "accounts/base.html" %} {% block content %}
+
+<div class="flex flex-row items-center  mb-12"></div>
+
+<div class=" relative shadow-md sm:rounded-lg ml-12">
+    <table class=" text-sm text-left text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="py-3 px-6">
+                    Doctor Name
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    Department
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    Address
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    Contact Number
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    Status
+                </th>
+                
+            </tr>
+        </thead>
+        {% for d in doctors %}
+        <tbody>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                {{d.get_name}}
+                </th>
+                <td class="py-4 px-6">
+                    {{d.department}}
+                </td>
+                <td class="py-4 px-6">
+                    {{d.address}}
+                </td>
+                <td class="py-4 px-6">
+                    {{d.mobile}}
+                </td>
+                <td class="py-4 px-6">
+                    {{d.status}}
+                </td>
+               
+            </tr>
+            
+        </tbody>
+        {% endfor %}
+    </table>
+</div>
+</div>
+</div>
+
+
+{% endblock %}

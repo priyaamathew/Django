@@ -1,0 +1,26 @@
+{% extends "accounts/base.html" %} 
+
+{% block content %}
+<div class="relative ">
+    <img class="max-w-full h-auto" src="/static/hospital.jpg" alt="image description">
+     <div class="absolute right-20  top-20 px-4 py-2  opacity-70">
+   
+  <div><h1> <a class="bg-green-400  font-bold py-2 px-4 rounded hover:bg-green-700 hover:text-white" href="{% url 'accounts:adminlogin'%}">ADMIN LOGIN</a></h1><br>
+  <h1> <a class="bg-green-400  font-bold py-2 px-4 rounded hover:bg-green-700 hover:text-white" href="{% url 'accounts:doctorlogin'%}">DOCTOR LOGIN</a></h1><br>
+  <h1> <a class="bg-green-400  font-bold py-2 px-4 rounded hover:bg-green-700 hover:text-white" href="{% url 'accounts:patientlogin'%}">PATIENT LOGIN</a></h1><br>
+   <h1> <a class="bg-green-400  font-bold py-2 px-4 rounded hover:bg-green-700 hover:text-white" href="{% url 'accounts:pharmacistlogin'%}">PHARMACIST LOGIN</a></h1>
+  </div><br><br>
+
+  
+  
+
+
+
+  <a href=""></a>
+  
+</div>
+
+
+
+</div>
+{% endblock %}

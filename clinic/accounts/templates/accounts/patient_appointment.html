@@ -1,0 +1,10 @@
+{% extends "accounts/base.html" %}{% load tailwind_filters %}
+{% block content %}
+<div class="flex justify-center mt-12" >
+  <form method="post" class="w-1/2">
+    {% csrf_token %}
+      {{appointmentForm|crispy}}
+    <button type="submit" >SUBMIT</button>
+  </form>
+</div>
+{% endblock %}

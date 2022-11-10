@@ -1,0 +1,63 @@
+{% extends "accounts/base.html" %} {% block content %}
+<div class="grid grid-cols-4">
+  <div class="col-span-1 shadow-lg bg-yellow-300 min-h-screen">
+    <nav>
+     
+      <h5 class="m-6 font-bold"><a href="{% url 'accounts:patient-dashboard' %}" >Patient Dashboard</a></h5>
+      <ul class="flex flex-col m-6 gap-4">
+        <li><a href="{% url 'accounts:patient-book-appointment'%}">Make Appoinment</a></li>
+        <li><a href="{% url 'accounts:admin-view-doctor' %}">Doctor</a></li>
+        <li><a href="{% url 'accounts:patient-view-appointment'%}">My Appoinment</a></li>
+        <li>bill</li>
+        <li> <a href="{%url 'logout' %}">LOGOUT</a></li>
+
+      </ul>
+    </nav>
+  </div>
+<div class="m-6 col-span-3">
+<table
+        class="table-auto border-separate border-spacing-2 border border-blue-500"
+      >
+        <thead>
+          <tr class="bg-orange-700">
+            <th>Name</th>
+            <th>Address</th>
+            <th>Doctor</th>
+            <th>Description</th>
+            <th>Date</th>
+            
+            <th>token Number</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+      {%for a in appointments%}
+        <tbody>
+          <tr class="bg-green-700">
+            <td class=" ">{{patient.get_name}}</td>
+            <td>{{patient.address}}</td>
+            <td>{{a.doctorName}}</td>
+             <td>{{a.description}}</td>
+            <td>{{a.appointmentDate}}</td>
+            <td>{{a.token_number}}</td>
+            <td>{{a.status}}</td>
+            <td>
+              <a
+                href=""
+                class="font-medium text-black-600 hover:underline hover:text-red-600"
+                ></a
+              >
+            </td>
+          </tr>
+       
+        </tbody>
+        {% endfor %}
+       
+      </table>
+     </div>
+
+{% endblock %}
+
+
+
+
+

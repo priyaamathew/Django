@@ -1,0 +1,18 @@
+{% extends "accounts/base.html" %} {% block content %}
+
+{% for p in prescription %}
+<a href="#" class="block p-6 w-1/2 bg-white rounded-lg border border-gray-800 bg-red-200 shadow-md hover:bg-gray-100 dark:bg-white dark:shadow-lg ">
+    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-800">APJ hospital</h5>
+    <p class="font-normal text-gray-700 dark:text-gray-800">patient Name</p><br>
+    <p class="font-normal text-gray-700 dark:text-gray-800">{{p.patientName}}.</p><br>
+    <p class="font-normal text-gray-700 dark:text-gray-800 ">medicine and description</p><br>
+    <p class="font-normal text-gray-700 dark:text-gray-800"> {{p.medicine}}<br>{{p.description}}</p><br>
+    <p class="font-normal text-gray-700 dark:text-gray-800">consulted by</p><br>
+    <p class="font-normal text-gray-700 dark:text-gray-800">{{p.doctorName}}.</p>
+</a>
+
+
+
+{% endfor %}
+
+{% endblock %}
